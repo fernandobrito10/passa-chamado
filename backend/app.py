@@ -1,9 +1,8 @@
-import requests
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
-import os
 from agidesk_api import get_unassigned_tickets, get_technicians, assign_ticket, id_tecnicos
+import os
 
 load_dotenv()
 
@@ -24,7 +23,7 @@ API_KEY = os.getenv('API_KEY')
 API_URL = os.getenv('API_URL')
 
 app = Flask(__name__)
-CORS(app)  # Habilita CORS para todas as rotas
+CORS(app)
 
 @app.route('/')
 def index():
@@ -48,7 +47,7 @@ def technicians():
     return jsonify([{
         'id': tecnico['id'],
         'nome': tecnico['name'],
-        'foto': tecnico['avatar_url'],
+        'foto': f"https://grendene.agidesk.com/{tecnico['avatar_url']}" if tecnico['avatar_url'] else '',
         'chamadosAtivos': tecnico['ticket_count']
     } for tecnico in tecnicos])
 
@@ -62,4 +61,4 @@ def assign():
     return jsonify({'error': 'Falha ao atribuir chamado'}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

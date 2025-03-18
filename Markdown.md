@@ -166,11 +166,43 @@ document.addEventListener("DOMContentLoaded", () => {
 ```
 
 ## 4. Execução do Projeto
-1. Execute o backend:
+
+### Backend
+1. Configure o arquivo `.env` na pasta `backend`:
+```env
+API_KEY=sua_chave_api_agidesk
+API_URL=url_da_api_agidesk
 ```
-python backend/app.py
+
+2. Execute o backend:
+```bash
+cd backend
+python app.py
 ```
-2. Acesse a interface web no navegador: [http://localhost:5000](http://localhost:5000)
+O servidor estará disponível em `http://seu_ip:5000`
+
+### Frontend
+1. Configure o arquivo `.env` na pasta `frontend`:
+```env
+VITE_API_URL=http://seu_ip:5000/api
+```
+
+2. Execute o frontend:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+O frontend estará disponível em `http://localhost:5173`
+
+### Acessando a Aplicação
+- Localmente: Acesse `http://localhost:5173`
+- Remotamente: Acesse `http://seu_ip:5173`
+
+**Nota**: Certifique-se de que:
+1. A porta 5000 está liberada no firewall para o backend
+2. A porta 5173 está liberada no firewall para o frontend
+3. O IP do servidor está acessível na rede
 
 ## 5. Melhores Práticas
 - Utilize variáveis de ambiente para armazenar chaves de API.
