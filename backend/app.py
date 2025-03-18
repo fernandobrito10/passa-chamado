@@ -17,7 +17,7 @@ load_dotenv()
 # 7957 Hyann
 # 3637 Luis Fernando
 
-id_tecnicos = ["18848", "7304", "876", "5207", "18823", "13132", "16740", "1241", "7957", "3637"]
+id_tecnicos = ["7304", "876", "5207", "13132", "18848", "18823", "16740", "1241", "7957", "3637"]
 
 API_KEY = os.getenv('API_KEY')
 API_URL = os.getenv('API_URL')
@@ -36,8 +36,8 @@ def tickets():
     return jsonify([{
         'id': chamado.get('id'),
         'titulo': chamado.get('title'),
-        'descricao': chamado.get('description'),
-        'cliente': chamado.get('requester', {}).get('name', 'Cliente não identificado')
+        'descricao': chamado.get('content'),
+        'cliente': chamado.get('contact') if isinstance(chamado.get('contact'), str) else chamado.get('contact', {}).get('name', 'Cliente não identificado')
     } for chamado in chamados])
 
 @app.route('/api/technicians')

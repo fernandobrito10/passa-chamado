@@ -7,7 +7,7 @@ load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
 
-id_tecnicos = ["18848", "7304", "876", "5207", "18823", "13132", "16740", "1241", "7957", "3637"]
+id_tecnicos = ["7304", "876", "5207", "16740", "1241", "7957", "18848", "18823", "3637", "13132"]
 
 # Desabilitar avisos de SSL inseguro
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
